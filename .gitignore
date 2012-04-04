@@ -1,0 +1,17 @@
+bin/
+obj/
+Tools/
+*.suo
+*.user
+packages/
+csx/
+
+*.exe
+*.nupkg
+*.pdb
+license.txt
+
+lib/*/*.xml
+
+publish/
+_ViewStart.cshtml
