@@ -12,8 +12,8 @@ namespace BuscaCep.Models
 {
     public class Logradouro
     {
-        
-        
+
+
         public string Endereco { get; set; }
         public string Bairro { get; set; }
         public string Localidade { get; set; }
@@ -57,7 +57,7 @@ namespace BuscaCep.Models
 
             html = String.Empty;
 
-           Logradouro log = new Logradouro();
+            Logradouro log = new Logradouro();
 
 
 
@@ -65,7 +65,7 @@ namespace BuscaCep.Models
             {
 
                 Match m = mc[i];
-               
+
                 switch (i)
                 {
                     case 1:
@@ -82,35 +82,9 @@ namespace BuscaCep.Models
                         break;
                 }
 
-
-
-
             }
             return log;
-
-
         }
-
-
     }
-
-
-
 }
-/*
 
-  <span class="resposta">Logradouro: </span>
-  <span class="respostadestaque"> Avenida Olavo Fontoura - de 651/652 a 1399/1400 </span>
-    <br/>
-  <span class="resposta">Bairro: </span>
-  <span class="respostadestaque">Santana</span>
-    <br/> 
- <span class="resposta">Localidade / UF: </span>
- <span class="respostadestaque"> S�o Paulo /SP </span>
- <br/>
- <span class="resposta">CEP: </span>
- <span class="respostadestaque">02012021</span>
-  <br/>
-
-
-*/

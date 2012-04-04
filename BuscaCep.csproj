@@ -71,7 +71,6 @@
     <Content Include="Content\back.png" />
     <Content Include="Content\screen.css" />
     <Content Include="Global.asax" />
-    <Content Include="teste.htm" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

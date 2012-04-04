@@ -45,15 +45,16 @@
         $(document).ready(function () {
 
            initialize();
-           $('#cep_in').focus();
+
+           $('#cep_in').focus();
+
             $('#search').bind('click', function () {
             
              var url = "@Url.Action("DadosLogradouro", "Home")";
              
              $.getJSON(url + "/" + $('#cep_in').val(), function (data) {
                     $.each(data, function (key, val) {
-                        // items.push('<li id="' + key + '">' + val + '</li>');
-                        $("#" + key + "").html(val);
+                       $("#" + key + "").html(val);
                     });
 
 
@@ -66,8 +67,7 @@
                     end += "," +  $("#Localidade").html().substring(0, $("#Localidade").html().indexOf("/"));
                     end += ", " + $("#cep_in").val();
 
-                    //initialize(end);
-                    codeAddress(end);
+                  codeAddress(end);
                    
                 });
                 
@@ -142,7 +142,7 @@
     <title>Busca Cep</title>
 </head>
 <body>
-    <a href="http://github.com/sinhorinho">
+    <a href="http://github.com/sinhorinho/BuscaCep">
         <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67"
             alt="Fork me on GitHub">
     </a>
@@ -162,7 +162,7 @@
         </div>
         <div class="push-5 span-14">
             <div class="search">
-                <input id="cep_in" placeholder="Digite o Cep" type="text"  />
+                <input id="cep_in" placeholder="Digite o Cep" type="text" />
                 <input id="search" type="button" value="Buscar" />
                 <div class="clear">
                 </div>
@@ -179,7 +179,7 @@
                 </div>
             </div>
             <div style="text-align: center;">
-                @*  <a href="http://www.jqueryload.com/google-maps-api-3-example-search-an-address">Back to the tutorial <em>Google maps Api 3 Search Address Example</em></a>*@
+                <a href="http://github.com/sinhorinho/BuscaCep">Código Fonte <em>BuscaCep</em></a>
             </div>
         </div>
         <br />
