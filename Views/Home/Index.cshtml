@@ -11,72 +11,69 @@
     <script type="text/javascript">
         var geocoder;
         var map;
+
+        $(document).ready(function () {
+
+            initialize();
+            $('#cep_in').focus();
+
+            $('#cep_in').keypress(function(event) {
+                if ( event.which == 13 ) {
+                    event.preventDefault();
+                    CarregaLogradouro();
+                }
+            });
+
+            $('#search').bind('click', function () {
+                CarregaLogradouro();
+            });
+        });
+
         function initialize() {
             geocoder = new google.maps.Geocoder();
             var latlng = new google.maps.LatLng(-23.551753, -46.632779);
             var myOptions = {
                 zoom: 17,
                 center: latlng,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-
+                mapTypeId: google.maps.MapTypeId.TERRAIN
             }
             map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
         }
 
         function codeAddress(address) {
-
             geocoder.geocode({ 'address': address }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     map.setCenter(results[0].geometry.location);
-                    var latlng2 = new google.maps.LatLng(result[0].geometry.location.Ua, result[0].geometry.location.Va);
                     var marker = new google.maps.Marker({
-                        position: latlng2,
+                        position: results[0].geometry.location,
                         map: map,
-                        title: 'title'
-
+                        title: 'Logradouro localizado!'
                     });
                 } else {
                     alert("Geocode was not successful for the following reason: " + status);
                 }
             });
         }
-    </script>
-    <script>
-        $(document).ready(function () {
 
-           initialize();
-
-           $('#cep_in').focus();
-
-            $('#search').bind('click', function () {
-            
-             var url = "@Url.Action("DadosLogradouro", "Home")";
-             
-             $.getJSON(url + "/" + $('#cep_in').val(), function (data) {
-                    $.each(data, function (key, val) {
-                       $("#" + key + "").html(val);
-                    });
-
-
-                    var end = $("#Endereco").html().substring(0, $("#Endereco").html().indexOf("-"));
-
-                    if (end == "") {
-                        end = $("#Endereco").html();
-                    }
-
-                    end += "," +  $("#Localidade").html().substring(0, $("#Localidade").html().indexOf("/"));
-                    end += ", " + $("#cep_in").val();
-
-                  codeAddress(end);
-                   
+        function CarregaLogradouro() {
+            var url = "@Url.Action("DadosLogradouro", "Home")";
+            $.getJSON(url + "/" + $('#cep_in').val(), function (data) {
+                $.each(data, function (key, val) {
+                    $("#" + key + "").html(val);
                 });
-                
-             
-            });
             
-        });
+                var end = $("#Endereco").html().substring(0, $("#Endereco").html().indexOf("-"));
+                if (end == "") {
+                    end = $("#Endereco").html();
+                }
+                end += "," +  $("#Localidade").html().substring(0, $("#Localidade").html().indexOf("/"));
+                end += ", " + $("#cep_in").val();
 
-    </script>
+                codeAddress(end);
+                   
+            });
+      }
+</script>
     <style type="text/css">
         html
         {
