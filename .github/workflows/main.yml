@@ -10,21 +10,20 @@ jobs:
     steps:
     - uses: actions/checkout@v1
       name: Checkout Code
-     
-    - name: Setup MSBuild Path
-      uses: sinhorinho/Setup-MSBuild@v1
        
-    - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.0.2
+    - uses: NuGet/setup-nuget@v1.0.2
+    - run: nuget restore BuscaCep.sln
      
-    - name: Restore NuGet Packages
-      run: nuget restore BuscaCep.sln
+
+   # - name: Setup MSBuild Path
+   #   uses: sinhorinho/Setup-MSBuild@v1
+
  
-    - name: Build and Publish Web App
-      run: msbuild SimpleFrameworkApp.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+   # - name: Build and Publish Web App
+   #   run: msbuild SimpleFrameworkApp.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
  
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v1.0.0
-      with:
-        name: published_webapp
-        path: bin\Release\Publish
+   # - name: Upload Artifact
+   #   uses: actions/upload-artifact@v1.0.0
+   #   with:
+   #     name: published_webapp
+   #     path: bin\Release\Publish
